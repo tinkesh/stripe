@@ -15,6 +15,15 @@
 
 <tr>
 <td>
+<p>Do you would like to go for recurring payment</p>
+<%= radio_button_tag "recurring", 1, true %>Yes &nbsp &nbsp
+<%= radio_button_tag "recurring", 0 %>No
+</td>
+</tr>
+
+<tr>
+<td>
+<fieldset>
 <p>Monthly Subscription</p>
 <select name="monthly_subscription">
         <option value="">Select monthly Suscription</option>
@@ -24,12 +33,7 @@
 	<option value="4">101 - 150 children : $149.00 CAD - monthly</option>
 	<option value="5">150+ : $199.00 CAD - monthly</option>
 </select>
-</td>
-</tr>
 
-
-<tr>
-<td>
 <p>Annual Subscription - 10% Savings</p>
 <select name="yearly_subscription">
         <option value="">Select yearly Suscription</option>
@@ -39,9 +43,21 @@
 	<option value="9">101 - 150 children : $1609.20 CAD - yearly</option>
 	<option value="10">150+ : $2149.20 CAD - yearly</option>
 </select>
+</fieldset>
 </td>
 </tr>
 
+
+<tr>
+<td><fieldset>
+    <p> Pay a one-off(non-recurring)</p>
+     <p>Amount(Amount must be at least 50c)</p>
+     <%= text_field_tag "amount", "", :style => "width:80px;"%>
+     <p>Description</p>
+     <%= text_area_tag "payoff_description", "" %>
+</fieldset>
+</td>
+</tr>
 
 <tr>
 <td>
@@ -193,7 +209,8 @@
         number: $(".card-number").val(),
         cvc: $(".card-cvc").val(),
         exp_month: $(".card-expiration-month").val(),
-        exp_year: $(".card-expiration-year").val()
+        exp_year: $(".card-expiration-year").val(),
+        name: $(".email").val()
       }, stripeResponseHandler);
       
       return false;
