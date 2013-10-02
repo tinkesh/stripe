@@ -28,11 +28,11 @@ def create
 
 
  else
-
+        amount = params[:amount].to_i*100 if !params[:amount].blank?
 	# Create the charge on Stripe's servers - this will charge the user's card
 	begin
 	  @response = Stripe::Charge.create(
-	    :amount => params[:amount].to_i,
+	    :amount => amount,
 	    :currency => params[:currency],
 	    :card => params[:stripeToken],
 	    :description => params[:payoff_description]
